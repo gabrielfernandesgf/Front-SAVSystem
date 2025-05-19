@@ -1,0 +1,40 @@
+<p-panel header="Cadastro de Cliente">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" pInputText [(ngModel)]="cliente.nome" />
+    </div>
+
+    <div class="p-field">
+      <label for="cpf">CPF</label>
+      <input id="cpf" type="text" pInputText [(ngModel)]="cliente.cpf" />
+    </div>
+
+<!--    <button (click)="salvarCliente()">Salvar</button>-->
+    <button pButton type="button" label="Salvar" icon="pi pi-save" class="p-button-success" (click)="salvarCliente()"></button>
+    <button pButton type="button" label="Voltar" icon="pi pi-save" class="p-button-success" (click)="voltar()"></button>
+
+  </div>
+
+  <p-table [value]="clientes" class="p-mt-4" *ngIf="clientes.length">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente>
+      <tr>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.cpf }}</td>
+        <td>
+          <button pButton label="Editar" icon="pi pi-pencil" class="p-button-warning p-mr-2" (click)="editarCliente(cliente)"></button>
+          <button pButton label="Excluir" icon="pi pi-trash" class="p-button-danger" (click)="excluirCliente(cliente.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+</p-panel>

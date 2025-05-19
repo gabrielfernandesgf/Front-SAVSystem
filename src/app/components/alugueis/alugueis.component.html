@@ -1,0 +1,69 @@
+<p-panel header="Registrar Aluguel">
+  <div class="p-fluid p-grid p-formgrid">
+    <div class="p-field">
+      <label for="cliente">Cliente</label>
+      <div class="p-inputgroup">
+        <p-dropdown
+          [options]="clientes"
+          [(ngModel)]="aluguel.cliente"
+          optionLabel="nome"
+          placeholder="Selecione um cliente"
+        ></p-dropdown>
+        <button pButton label="Adicionar" icon="pi pi-plus" class="p-button-success" (click)="irParaCadastroCliente()"></button>
+      </div>
+    </div>
+
+    <div class="p-field">
+      <label for="veiculo">Veículo</label>
+      <div class="p-inputgroup">
+        <p-dropdown
+          [options]="veiculosDisponiveis"
+          [(ngModel)]="aluguel.veiculo"
+          optionLabel="modelo"
+          placeholder="Selecione um veículo"
+        ></p-dropdown>
+        <button pButton label="Adicionar" icon="pi pi-plus" class="p-button-success" (click)="irParaCadastroVeiculo()"></button>
+      </div>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="dataInicio">Data Início</label>
+      <input type="date" pInputText [(ngModel)]="aluguel.dataInicio" />
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="dataFim">Data Fim</label>
+      <input type="date" pInputText [(ngModel)]="aluguel.dataFim" />
+    </div>
+
+    <div class="p-field p-col-12">
+      <button
+        pButton
+        label="Registrar"
+        icon="pi pi-check"
+        (click)="registrarAluguel()"
+      ></button>
+    </div>
+
+    <p-table [value]="alugueis" class="p-mt-4">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Cliente</th>
+          <th>Veículo</th>
+          <th>Início</th>
+          <th>Fim</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-aluguel>
+        <tr>
+          <td>{{ aluguel.cliente?.nome }}</td>
+          <td>{{ aluguel.veiculo?.modelo }}</td>
+          <td>{{ aluguel.dataInicio }}</td>
+          <td>{{ aluguel.dataFim }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </div>
+</p-panel>

@@ -1,0 +1,65 @@
+<p-panel header="Cadastro de Veículo">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="modelo">Modelo</label>
+      <input id="modelo" type="text" pInputText [(ngModel)]="veiculo.modelo" />
+    </div>
+
+    <div class="p-field">
+      <label for="tipo">Tipo</label>
+      <p-dropdown
+        [options]="tiposVeiculo"
+        [(ngModel)]="veiculo.tipoVeiculo"
+        placeholder="Selecione o tipo"
+        optionLabel="label"
+        optionValue="value">
+      </p-dropdown>
+    </div>
+    <div class="p-field">
+      <label for="placa">Placa</label>
+      <input id="placa" type="text" pInputText [(ngModel)]="veiculo.placa" />
+    </div>
+
+
+    <div class="p-field-checkbox">
+      <p-checkbox
+        inputId="disponivel"
+        [(ngModel)]="veiculo.disponivel"
+        binary="true"
+      ></p-checkbox>
+      <label for="disponivel">Disponível</label>
+    </div>
+
+    <button pButton type="button" label="Salvar" icon="pi pi-save" class="p-button-success" (click)="salvarVeiculo()"></button>
+    <button pButton type="button" label="Voltar" icon="pi pi-save" class="p-button-success" (click)="voltar()"></button>
+
+  </div>
+</p-panel>
+
+<p-table [value]="veiculos" class="p-mt-4" *ngIf="veiculos.length">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Modelo</th>
+      <th>Tipo</th>
+      <th>Placa</th>
+      <th>Disponível</th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-veiculo>
+    <tr>
+      <td>{{ veiculo.modelo }}</td>
+      <td>{{ veiculo.tipoVeiculo }}</td>
+      <td>{{ veiculo.placa }}</td>
+      <td>
+        <p-tag
+          [value]="veiculo.disponivel ? 'Sim' : 'Não'"
+          [severity]="veiculo.disponivel ? 'success' : 'danger'"
+        ></p-tag>
+      </td>
+      <td>
+        <button pButton type="button" label="Deletar" icon="pi pi-trash" class="p-button-danger" (click)="deletarVeiculo(veiculo.id)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
